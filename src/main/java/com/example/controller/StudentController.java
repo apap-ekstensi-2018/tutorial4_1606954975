@@ -119,16 +119,16 @@ public class StudentController
     		}
     }
     
-//    @RequestMapping(value = "/student/update/submit/", method = RequestMethod.POST)
-//    public String updateSubmit(
-//    		@RequestParam(value = "npm", required = false) String npm,
-//    		@RequestParam(value = "name", required = false) String name,
-//    		@RequestParam(value = "gpa", required = false) double gpa)
-//    {
-//    		StudentModel student = new StudentModel(npm, name, gpa);
-//    		studentDAO.updateStudent(student);
-//    		return "success-update";
-//    }
+    @RequestMapping(value = "/student/update/submit/", method = RequestMethod.POST)
+    public String updateSubmit(
+    		@RequestParam(value = "npm", required = false) String npm,
+    		@RequestParam(value = "name", required = false) String name,
+    		@RequestParam(value = "gpa", required = false) double gpa)
+    {
+    		StudentModel student = new StudentModel(npm, name, gpa);
+    		studentDAO.updateStudent(student);
+    		return "success-update";
+    }
     
     
   @RequestMapping(value = "/student/update/submit/", method = RequestMethod.POST)
