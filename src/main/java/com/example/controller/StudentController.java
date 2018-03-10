@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.model.StudentModel;
@@ -103,5 +104,40 @@ public class StudentController
     			return "not-found";
     		}
     }
+    
+    @RequestMapping("/student/update/{npm}")
+    public String Update (Model model, @PathVariable(value= "npm") String npm)
+    {
+    		StudentModel student = studentDAO.selectStudent(npm);
+    		
+    		if(student != null) {
+    			model.addAttribute("student", student);
+    			return "form-update";  			
+    		}else {
+    			model.addAttribute("npm", npm);
+    			return "not-found";
+    		}
+    }
+    
+//    @RequestMapping(value = "/student/update/submit/", method = RequestMethod.POST)
+//    public String updateSubmit(
+//    		@RequestParam(value = "npm", required = false) String npm,
+//    		@RequestParam(value = "name", required = false) String name,
+//    		@RequestParam(value = "gpa", required = false) double gpa)
+//    {
+//    		StudentModel student = new StudentModel(npm, name, gpa);
+//    		studentDAO.updateStudent(student);
+//    		return "success-update";
+//    }
+    
+    
+  @RequestMapping(value = "/student/update/submit/", method = RequestMethod.POST)
+  public String updateSubmit(StudentModel student)
+  {
+  		studentDAO.updateStudent(student);
+  		return "success-update";
+  }
+    
+    
 
 }
